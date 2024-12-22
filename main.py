@@ -1,21 +1,39 @@
 import tkinter as tk
-import conversions as conv
+from conversions import *
 
 # Create the main window
 root = tk.Tk()
 root.title("Unit Converter")
 root.geometry("600x400")
 
+def convert():
+    input_field = float(input_var.get())
+
+    input_unit = input_value.get()
+    output_unit = output_value.get()
+
+    output_var.set(str(calc_convert(input_unit, output_unit, input_field)))
+
+def calc_convert(in_unit, out_unit, val):
+    if in_unit == out_unit:
+        return val
+    else:
+        match in_unit:
+            case "Miles":
+                return convert_miles(out_unit, val)
+
+def convert_miles(out_unit, val):
+    match out_unit:
+        case "Kilometers":
+            return val * miles_to_km()
+        case "Feet":
+            return val * miles_to_feet()
+        case "Meters":
+            return val * miles_to_meters()
+
 # string variables
 input_var = tk.StringVar()
 output_var = tk.StringVar()
-
-def convert():
-    input_field = input_var.get()
-    output_field = output_var.get()
-
-    print("Input: " + input_field)
-    print("Output: " + output_field)
 
 # Create Miles fields
 input_label = tk.Label(root, text = "Input", font=('calibre', 10, 'bold'))
@@ -28,25 +46,27 @@ output_entry = tk.Entry(root,textvariable = output_var, font=('calibre', 10, 'no
 # Convert Button
 convert_btn = tk.Button(root, text = 'Convert', command = convert)
 
-# Create Input Unit Listbox
-input_menu_button = tk.Menubutton(root, text = "Input Unit")
-input_menu_button.menu = tk.Menu(input_menu_button)
-input_menu_button["menu"] = input_menu_button.menu
-ivar1 = tk.IntVar()
-ivar2 = tk.IntVar()
-ivar3 = tk.IntVar()
+# Input unit
+input_options = ["Miles", "Kilometers", "Feet", "Meters"]
+input_value = tk.StringVar(root)
+input_value.set("Selection an Option")
+input_menu = tk.OptionMenu(root, input_value, *input_options)
 
-input_menu_button.menu.add_checkbutton(label = "Miles", variable = ivar1)
-input_menu_button.menu.add_checkbutton(label = "Inches", variable = ivar1)
-input_menu_button.menu.add_checkbutton(label = "Feet", variable = ivar1)
+# Output unit
+output_options = ["Miles", "Kilometers", "Feet", "Meters"]
+output_value = tk.StringVar(root)
+output_value.set("Selection an Option")
+output_menu = tk.OptionMenu(root, output_value, *output_options)
 
-# place widgets
+
+# Place widgets
 input_label.grid(row=1, column=0)
 input_entry.grid(row=2, column=0)
-input_menu_button.grid(row=3, column=0)
+input_menu.grid(row=3, column=0)
 
 output_label.grid(row=1, column=2)
 output_entry.grid(row=2, column=2)
+output_menu.grid(row=3, column=2)
 
 convert_btn.grid(row=4, column=1)
 
