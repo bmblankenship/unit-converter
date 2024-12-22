@@ -13,7 +13,7 @@ def main():
     # Create Input fields
     input_label = tk.Label(root, text="Input", font=('calibre', 10, 'bold'))
     input_entry = tk.Entry(root, textvariable=input_var, font=('calibre', 10, 'normal'))
-    input_options = ["Miles", "Kilometers", "Feet", "Meters"]
+    input_options = input_list()
     input_value = tk.StringVar(root)
     input_value.set("Selection an Option")
     input_menu = tk.OptionMenu(root, input_value, *input_options)
@@ -21,7 +21,7 @@ def main():
     # Create Output fields
     output_label = tk.Label(root, text="Output", font=('calibre', 10, 'bold'))
     output_entry = tk.Entry(root, textvariable=output_var, font=('calibre', 10, 'normal'))
-    output_options = ["Miles", "Kilometers", "Feet", "Meters"]
+    output_options = output_list()
     output_value = tk.StringVar(root)
     output_value.set("Selection an Option")
     output_menu = tk.OptionMenu(root, output_value, *output_options)
@@ -42,6 +42,12 @@ def main():
 
     # Start the GUI event Loop
     root.mainloop()
+
+def input_list():
+    return ["Miles", "Kilometers", "Feet", "Meters"]
+
+def output_list():
+    return ["Miles", "Kilometers", "Feet", "Meters"]
 
 def convert(input_var, input_value, output_value, output_var):
     input_field = float(input_var.get())
