@@ -1,53 +1,68 @@
 import tkinter as tk
 
 def main():
+
     # Create the main window
     root = tk.Tk()
     root.title("Unit Converter")
-    root.geometry("600x400")
+    window_width = 600
+    window_height = 400
+    root.geometry("{}x{}".format(window_width,window_height))
 
     # string variables
     input_var = tk.StringVar()
     output_var = tk.StringVar()
 
+    # conversion type selection
+    type_value = tk.StringVar(root)
+    type_options = ["Length", "Volume", "Weight"]
+    type_value.set("Select Conversion Type")
+    type_menu = tk.OptionMenu(root, type_value, *type_options)
+
     # Create Input fields
     input_label = tk.Label(root, text="Input", font=('calibre', 10, 'bold'))
     input_entry = tk.Entry(root, textvariable=input_var, font=('calibre', 10, 'normal'))
-    input_options = input_list()
+    input_options = unit_list(type_value)
     input_value = tk.StringVar(root)
-    input_value.set("Selection an Option")
+    input_value.set("Select Input Unit")
     input_menu = tk.OptionMenu(root, input_value, *input_options)
 
     # Create Output fields
     output_label = tk.Label(root, text="Output", font=('calibre', 10, 'bold'))
     output_entry = tk.Entry(root, textvariable=output_var, font=('calibre', 10, 'normal'))
-    output_options = output_list()
+    output_options = unit_list(type_value)
     output_value = tk.StringVar(root)
-    output_value.set("Selection an Option")
+    output_value.set("Select Output Unit")
     output_menu = tk.OptionMenu(root, output_value, *output_options)
 
     # Convert Button
     convert_btn = tk.Button(root, text='Convert', command=lambda: convert(input_var, input_value, output_value, output_var))
 
     # Place widgets
-    input_label.grid(row=1, column=0)
-    input_entry.grid(row=2, column=0)
-    input_menu.grid(row=3, column=0)
+    type_menu.place(relx=0.50, rely=0.2, anchor="n")
 
-    output_label.grid(row=1, column=2)
-    output_entry.grid(row=2, column=2)
-    output_menu.grid(row=3, column=2)
+    input_label.place(relx=0.25 , rely=0.4, anchor="n")
+    input_entry.place(relx=0.25 , rely=0.5, anchor="n")
+    input_menu.place(relx=0.25 , rely=0.6, anchor="n")
 
-    convert_btn.grid(row=4, column=1)
+    output_label.place(relx=0.75 , rely=0.4, anchor="n")
+    output_entry.place(relx=0.75 , rely=0.5, anchor="n")
+    output_menu.place(relx=0.75 , rely=0.6, anchor="n")
+
+    convert_btn.place(relx=0.5, rely=0.9, anchor="n")
 
     # Start the GUI event Loop
     root.mainloop()
 
-def input_list():
-    return ["Miles", "Kilometers", "Feet", "Meters"]
-
-def output_list():
-    return ["Miles", "Kilometers", "Feet", "Meters"]
+def unit_list(type_value):
+    if type_value.get() == "Length":
+        return ["Miles", "Kilometers", "Feet", "Meters"]
+    elif type_value.get() == "Volume":
+        return ["Quarts", "Liters", "Gallons", "Milliliters"]
+    elif type_value.get() == "Weight":
+        return ["Pounds", "Kilograms"]
+    else:
+        return["error"]
 
 def convert(input_var, input_value, output_value, output_var):
     input_field = float(input_var.get())
