@@ -55,11 +55,11 @@ def main():
     root.mainloop()
 
 def unit_list(type_value):
-    if type_value.get() == "Length":
+    if type_value == "Length":
         return ["Miles", "Kilometers", "Feet", "Meters"]
-    elif type_value.get() == "Volume":
+    elif type_value == "Volume":
         return ["Quarts", "Liters", "Gallons", "Milliliters"]
-    elif type_value.get() == "Weight":
+    elif type_value == "Weight":
         return ["Pounds", "Kilograms"]
     else:
         return["error"]
