@@ -131,6 +131,14 @@ class UnitConverter:
                     return convert_feet(unit, val)
                 case "Meters":
                     return convert_meters(unit, val)
+                case "Centimeters":
+                    return convert_centimeters(unit, val)
+                case "Millimeters":
+                    return convert_millimeters(unit, val)
+                case "Yards":
+                    return convert_yards(unit, val)
+                case "Inches":
+                    return convert_inches(unit, val)
                 case _:
                     print("No Value Length")
         elif self.type_var.get() == "2":

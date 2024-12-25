@@ -7,8 +7,15 @@ def convert_miles(unit, val):
         case "Meters":
             return round(val * 1609.34, 2)
         case "Miles":
-            return round(val)
-
+            return val
+        case "Centimeters":
+            return round(val * 1609.34 * 100, 2)
+        case "Millimeters":
+            return round(val * 1609.34 * 1000, 2)
+        case "Yards":
+            return round(val * 1760, 2)
+        case "Inches":
+            return round(val * 63360, 2)
 
 def convert_kilometers(unit, val):
     match unit:
@@ -19,8 +26,15 @@ def convert_kilometers(unit, val):
         case "Meters":
             return round(val * 1000, 2)
         case "Kilometers":
-            return round(val)
-
+            return val
+        case "Centimeters":
+            return round(val * 100000, 2)
+        case "Millimeters":
+            return round(val * 1000000, 2)
+        case "Yards":
+            return round(val * 1093.61, 2)
+        case "Inches":
+            return round(val * 39370.1, 2)
 
 def convert_feet(unit, val):
     match unit:
@@ -31,8 +45,15 @@ def convert_feet(unit, val):
         case "Meters":
             return round(val * 0.3048, 2)
         case "Feet":
-            return round(val)
-
+            return val
+        case "Centimeters":
+            return round(val * 30.48, 2)
+        case "Millimeters":
+            return round(val * 304.8, 2)
+        case "Yards":
+            return round(val / 3, 2)
+        case "Inches":
+            return round(val * 12, 2)
 
 def convert_meters(unit, val):
     match unit:
@@ -43,4 +64,88 @@ def convert_meters(unit, val):
         case "Feet":
             return round(val * 3.28084, 2)
         case "Meters":
-            return round(val)
+            return val
+        case "Centimeters":
+            return round(val * 100, 2)
+        case "Millimeters":
+            return round(val * 1000, 2)
+        case "Yards":
+            return round(val * 1.09361, 2)
+        case "Inches":
+            return round(val * 39.3701, 2)
+
+def convert_centimeters(unit, val):
+    match unit:
+        case "Miles":
+            return round(val / 160900, 2)
+        case "Kilometers":
+            return round(val / 100000, 2)
+        case "Feet":
+            return round(val * 0.0328084, 2)
+        case "Meters":
+            return round(val * 0.01, 2)
+        case "Centimeters":
+            return val
+        case "Millimeters":
+            return round(val * 10, 2)
+        case "Yards":
+            return round(val * 0.0109361, 2)
+        case "Inches":
+            return round(val * 0.393701, 2)
+
+def convert_millimeters(unit, val):
+    match unit:
+        case "Miles":
+            return round(val / 1609000, 2)
+        case "Kilometers":
+            return round(val / 1000000, 2)
+        case "Feet":
+            return round(val / 304.8, 2)
+        case "Meters":
+            return round(val * 0.001, 2)
+        case "Centimeters":
+            return round(val * 10, 2)
+        case "Millimeters":
+            return val
+        case "Yards":
+            return round(val / 914.4, 2)
+        case "Inches":
+            return round(val * 0.0393701, 2)
+
+def convert_yards(unit, val):
+    match unit:
+        case "Miles":
+            return round(val / 1760, 2)
+        case "Kilometers":
+            return round(val / 1094, 2)
+        case "Feet":
+            return round(val * 3, 2)
+        case "Meters":
+            return round(val * 0.9144, 2)
+        case "Centimeters":
+            return round(val * 91.44, 2)
+        case "Millimeters":
+            return round(val * 914.4, 2)
+        case "Yards":
+            return val
+        case "Inches":
+            return round(val * 36, 2)
+
+def convert_inches(unit, val):
+    match unit:
+        case "Miles":
+            return round(val / 63360, 2)
+        case "Kilometers":
+            return round(val / 39370, 2)
+        case "Feet":
+            return round(val / 12, 2)
+        case "Meters":
+            return round(val / 39.37, 2)
+        case "Centimeters":
+            return round(val * 2.54, 2)
+        case "Millimeters":
+            return round(val * 25.4, 2)
+        case "Yards":
+            return round(val / 36, 2)
+        case "Inches":
+            return val

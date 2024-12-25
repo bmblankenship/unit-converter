@@ -12,6 +12,6 @@ class Settings:
         self.normal_font = ('calibre', 10, 'normal')
 
         # Menu Settings
-        self.length_options = ["Miles", "Kilometers", "Feet", "Meters"]
+        self.length_options = ["Miles", "Kilometers", "Feet", "Meters", "Centimeters", "Millimeters", "Yards", "Inches"]
         self.volume_options = ["Quarts", "Liters", "Gallons", "Milliliters"]
         self.weight_options = ["Pounds", "Kilograms"]
