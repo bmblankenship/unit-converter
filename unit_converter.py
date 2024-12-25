@@ -1,27 +1,29 @@
 import tkinter as tk
 from settings import Settings
+from length_conversion import *
+from volume_conversion import *
+from weight_conversion import *
 
 class UnitConverter:
 
     def __init__(self):
         # Create Main Window
         self.set = Settings()
-        print(self.set.length_options)
         self.root = tk.Tk()
         self.root.title("Unit Converter")
         self.root.geometry("{}x{}".format(self.set.window_width, self.set.window_height))
 
-        # String Variables
+        # State Variables
         self.input_var = tk.StringVar()
         self.output_var = tk.StringVar()
         self.type_var = tk.StringVar(self.root, "0")
 
-        # Type Selection
+        # Conversion Type Selection
         self.type_length = tk.Radiobutton(self.root, text="Length", variable=self.type_var, value = "1", command=self.length_selected)
         self.type_volume = tk.Radiobutton(self.root, text="Volume", variable=self.type_var, value = "2", command=self.volume_selected)
         self.type_weight = tk.Radiobutton(self.root, text="Weight", variable=self.type_var, value = "3", command=self.weight_selected)
 
-        # Create Inputs
+        # Inputs
         self.input_label = tk.Label(self.root, text="Input", font=self.set.bold_font)
         self.input_entry = tk.Entry(self.root, textvariable=self.input_var, font=self.set.normal_font)
 
@@ -40,7 +42,7 @@ class UnitConverter:
         self.input_weight_menu = tk.OptionMenu(self.root, self.input_weight_value, *self.set.weight_options)
         self.input_weight_menu.config(state="disabled")
 
-        # Create Outputs
+        # Outputs
         self.output_label = tk.Label(self.root, text="Output", font=self.set.bold_font)
         self.output_entry = tk.Entry(self.root, textvariable=self.output_var, font=self.set.normal_font)
 
@@ -119,83 +121,42 @@ class UnitConverter:
 
     def calc_convert(self, val):
         if self.type_var.get() == "1":
+            unit = str(self.output_length_value.get())
             match str(self.input_length_value.get()):
                 case "Miles":
-                    return self.convert_miles(val)
+                    return convert_miles(unit, val)
                 case "Kilometers":
-                    return self.convert_kilometers(val)
+                    return convert_kilometers(unit, val)
                 case "Feet":
-                    return self.convert_feet(val)
+                    return convert_feet(unit, val)
                 case "Meters":
-                    return self.convert_meters(val)
+                    return convert_meters(unit, val)
                 case _:
                     print("No Value Length")
-        elif self.type_var == "2":
+        elif self.type_var.get() == "2":
+            unit = str(self.output_volume_value.get())
             match str(self.input_volume_value.get()):
                 case "Quarts":
-                    return self.convert_miles(val) # Temporary, needs replacement
+                    return convert_quarts(unit, val)
                 case "Liters":
-                    return self.convert_miles(val) # Temporary, needs replacement
+                    return convert_liters(unit, val)
                 case "Gallons":
-                    return self.convert_miles(val) # Temporary, needs replacement
+                    return convert_gallons(unit, val)
                 case "Milliliters":
-                    return self.convert_miles(val) # Temporary, needs replacement
+                    return convert_milliliters(unit, val)
                 case _:
                     print("No Value volume")
-        elif self.type_var == "3":
+        elif self.type_var.get() == "3":
+            unit = str(self.output_weight_value.get())
             match str(self.input_weight_value.get()):
                 case "Pounds":
-                    return self.convert_miles(val) # Temporary, needs replacement
+                    return convert_pounds(unit, val)
                 case "Kilograms":
-                    return self.convert_miles(val) # Temporary, needs replacement
+                    return convert_kilograms(unit, val)
                 case _:
                     print("No Value weight")
         else:
             print("No value at all")
-
-    def convert_miles(self, val):
-        match str(self.output_length_value.get()):
-            case "Kilometers":
-                return round(val * 1.60934, 2)
-            case "Feet":
-                return round(val * 5280, 2)
-            case "Meters":
-                return round(val * 1609.34, 2)
-            case "Miles":
-                return round(val)
-
-    def convert_kilometers(self, val):
-        match str(self.output_length_value.get()):
-            case "Miles":
-                return round(val * 0.621371, 2)
-            case "Feet":
-                return round(val * 3280.84, 2)
-            case "Meters":
-                return round(val * 1000, 2)
-            case "Kilometers":
-                return round(val)
-
-    def convert_feet(self, val):
-        match str(self.output_length_value.get()):
-            case "Miles":
-                return round(val * 0.000189394, 2)
-            case "Kilometers":
-                return round(val * 0.0003048, 2)
-            case "Meters":
-                return round(val * 0.3048, 2)
-            case "Feet":
-                return round(val)
-
-    def convert_meters(self, val):
-        match str(self.output_length_value.get()):
-            case "Miles":
-                return round(val * 0.000621371, 2)
-            case "Kilometers":
-                return round(val * 0.001, 2)
-            case "Feet":
-                return round(val * 3.28084, 2)
-            case "Meters":
-                return round(val)
 
 if __name__ == '__main__':
     uc = UnitConverter()
