@@ -1,3 +1,28 @@
+def length_convert(input_unit, output_unit, val):
+    """
+    :String input_unit: Plural of input unit with leading capitol letter eg: Miles
+    :String output_unit: Plural of output unit with leading capitol letter eg: Kilometers
+    :float val: Input value to be converted to desired output unit
+    :return: returns calculated value from an internal function in length_conversion.py
+    """
+    match input_unit:
+        case "Miles":
+            return convert_miles(output_unit, val)
+        case "Kilometers":
+            return convert_kilometers(output_unit, val)
+        case "Feet":
+            return convert_feet(output_unit, val)
+        case "Meters":
+            return convert_meters(output_unit, val)
+        case "Centimeters":
+            return convert_centimeters(output_unit, val)
+        case "Millimeters":
+            return convert_millimeters(output_unit, val)
+        case "Yards":
+            return convert_yards(output_unit, val)
+        case "Inches":
+            return convert_inches(output_unit, val)
+
 def convert_miles(unit, val):
     match unit:
         case "Kilometers":

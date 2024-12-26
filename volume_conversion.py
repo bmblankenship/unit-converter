@@ -1,3 +1,14 @@
+def volume_convert(input_unit, output_unit, val):
+    match input_unit:
+        case "Quarts":
+            return convert_quarts(output_unit, val)
+        case "Liters":
+            return convert_liters(output_unit, val)
+        case "Gallons":
+            return convert_gallons(output_unit, val)
+        case "Milliliters":
+            return convert_milliliters(output_unit, val)
+
 def convert_milliliters(unit, val):
     match unit:
         case "Liters":

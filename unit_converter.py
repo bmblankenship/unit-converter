@@ -96,7 +96,6 @@ class UnitConverter:
         self.root.mainloop()
 
     def place_widgets(self):
-        # Place widgets
         self.type_length.place(relx=0.25, rely=0.1, anchor="n")
         self.type_volume.place(relx=0.5, rely=0.1, anchor="n")
         self.type_weight.place(relx=0.75, rely=0.1, anchor="n")
@@ -120,51 +119,15 @@ class UnitConverter:
         self.output_var.set(str(self.calc_convert(input_field)))
 
     def calc_convert(self, val):
-        if self.type_var.get() == "1":
-            unit = str(self.output_length_value.get())
-            match str(self.input_length_value.get()):
-                case "Miles":
-                    return convert_miles(unit, val)
-                case "Kilometers":
-                    return convert_kilometers(unit, val)
-                case "Feet":
-                    return convert_feet(unit, val)
-                case "Meters":
-                    return convert_meters(unit, val)
-                case "Centimeters":
-                    return convert_centimeters(unit, val)
-                case "Millimeters":
-                    return convert_millimeters(unit, val)
-                case "Yards":
-                    return convert_yards(unit, val)
-                case "Inches":
-                    return convert_inches(unit, val)
-                case _:
-                    print("No Value Length")
-        elif self.type_var.get() == "2":
-            unit = str(self.output_volume_value.get())
-            match str(self.input_volume_value.get()):
-                case "Quarts":
-                    return convert_quarts(unit, val)
-                case "Liters":
-                    return convert_liters(unit, val)
-                case "Gallons":
-                    return convert_gallons(unit, val)
-                case "Milliliters":
-                    return convert_milliliters(unit, val)
-                case _:
-                    print("No Value volume")
-        elif self.type_var.get() == "3":
-            unit = str(self.output_weight_value.get())
-            match str(self.input_weight_value.get()):
-                case "Pounds":
-                    return convert_pounds(unit, val)
-                case "Kilograms":
-                    return convert_kilograms(unit, val)
-                case _:
-                    print("No Value weight")
-        else:
-            print("No value at all")
+        match self.type_var.get():
+            case "1":
+                return length_convert(str(self.input_length_value.get()), str(self.output_length_value.get()), val)
+            case "2":
+                return volume_convert(str(self.input_volume_value.get()), str(self.output_volume_value.get()), val)
+            case "3":
+                return weight_convert(str(self.input_weight_value.get()), str(self.output_weight_value.get()), val)
+            case _:
+                print("Error parsing unit type")
 
 if __name__ == '__main__':
     uc = UnitConverter()
